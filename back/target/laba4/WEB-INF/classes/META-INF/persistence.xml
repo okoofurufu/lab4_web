@@ -1,0 +1,27 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="PU" transaction-type="JTA">  <!--ИМенно таким образом -->
+        <class>dao.UserDAO</class>  <!--твои ентити классы -->
+        <class>dao.ResultDAO</class>
+
+        <properties>
+            <!--БДшка -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/laba4"/> <!--Имя БД с хостом -->
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>  <!--Пользователь в БД -->
+            <property name="jakarta.persistence.jdbc.password" value="5894361"/>  <!--Пароль от пользователя в бд -->
+
+            <!-- ГибернЭйт -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- Фиксы для запуска Бд с гибой -->
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.JBossAppServerJtaPlatform"/>
+            <property name="hibernate.connection.provider_disables_autocommit" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
